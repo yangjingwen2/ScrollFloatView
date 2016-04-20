@@ -15,6 +15,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by yangjw
+ * androidxx.cn
+ */
 public class ListViewActivity extends AppCompatActivity implements AbsListView.OnScrollListener{
 
     private ListView mListView;
@@ -34,6 +38,9 @@ public class ListViewActivity extends AppCompatActivity implements AbsListView.O
         mListView.setOnScrollListener(this);
     }
 
+    /**
+     * 模拟数据
+     */
     private void setData() {
         for (int i = 0; i < 30; i++) {
             mDataSource.add("item" + i);
