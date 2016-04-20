@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyLesson01</string>
+    <string-array name="index">
+        <item>ListView的浮动块</item>
+        <item>ScrollView的浮动块</item>
+    </string-array>
+</resources>
