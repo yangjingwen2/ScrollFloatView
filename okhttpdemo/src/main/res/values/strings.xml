@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">OkHttpDemo</string>
+    <string-array name="index_menu">
+        <item>Get同步网络请求</item>
+        <item>POST同步网络请求</item>
+        <item>Get异步</item>
+        <item>Post异步</item>
+        <item>上传</item>
+        <item>下载</item>
+        <item>缓存</item>
+        <item>拦截器</item>
+    </string-array>
+</resources>
