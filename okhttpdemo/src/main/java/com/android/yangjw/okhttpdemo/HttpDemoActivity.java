@@ -28,10 +28,16 @@ public class HttpDemoActivity extends AppCompatActivity {
 
     public void click(View view) {
 
-        OkHttpUtil.httpGet(Config.URL, new IOkCallBack() {
+        OkHttpUtil.httpGet(Config.URL, new IOkCallBack<ProduectInfo>() {
+
             @Override
-            public void onSuccess(String result) {
-                mShowText.setText(result);
+            public Class<ProduectInfo> getClassType() {
+                return ProduectInfo.class;
+            }
+
+            @Override
+            public void onSuccess(ProduectInfo result) {
+                mShowText.setText(result.getData().getProducts().get(0).getName());
             }
 
             @Override
