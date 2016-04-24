@@ -18,7 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".GetSyncActivity" />
-        <activity android:name=".GetAsyncActivity"></activity>
+        <activity android:name=".GetAsyncActivity" />
+        <activity android:name=".PostSyncActivity" />
+        <activity android:name=".PostAsyncActivity" />
+        <activity android:name=".HttpDemoActivity"></activity>
     </application>
 
 </manifest>

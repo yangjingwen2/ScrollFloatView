@@ -28,10 +28,13 @@ public class MainActivity extends AppCompatActivity {
                         intent.setClass(MainActivity.this,GetAsyncActivity.class);
                         break;
                     case 2:
+                        intent.setClass(MainActivity.this,PostSyncActivity.class);
                         break;
                     case 3:
+                        intent.setClass(MainActivity.this,PostAsyncActivity.class);
                         break;
                     case 4:
+                        intent.setClass(MainActivity.this,HttpDemoActivity.class);
                         break;
                     case 5:
                         break;

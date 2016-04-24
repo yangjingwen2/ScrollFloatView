@@ -9,36 +9,44 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetAsyncActivity extends AppCompatActivity {
+public class PostAsyncActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_async);
+        setContentView(R.layout.activity_post_async);
     }
 
     public void click(View view) {
         OkHttpClient okHttpClient = new OkHttpClient();
-        Request request = new Request.Builder().get().url(Config.URL).build();
-        //enqueue就是将此次的call请求加入异步请求队列，会开启新的线程执行，并将执行的结果通过Callback接口回调的形式返回。
+        //Form表单格式的参数传递
+        FormBody formBody = new FormBody
+                .Builder()
+                .add("username","androidxx.cn")//设置参数名称和参数值
+                .build();
+        Request request = new Request
+                .Builder()
+                .post(formBody)//Post请求的参数传递
+                .url(Config.LOCALHOST_POST_URL)
+                .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
-                //请求失败的回调方法
-            }
+            public void onFailure(Call call, IOException e) {}
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                //请求成功的回调方法
+                //此方法运行在子线程中，不能在此方法中进行UI操作。
                 String result = response.body().string();
-                Log.d("yangjw",result);
-                //关闭body
+                Log.d("androixx.cn", result);
                 response.body().close();
             }
         });
+
+
     }
 }
