@@ -1,13 +1,8 @@
 package com.android.yangjw.okhttputils;
 
-import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
-
-import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.Set;
 
@@ -44,31 +39,9 @@ public class OkHttpUtil {
     public static void httpGet(String url, final IOkCallBack callback) {
 
         if (callback == null) throw new NullPointerException("callback is null");
-
+        if (callback.getClassType() == null) throw new NullPointerException("getClassType() cannot return null");
         Request request = new Request.Builder().url(url).build();
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, final IOException e) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onException(e);
-                    }
-                });
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final String result = response.body().string();
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onSuccess(result);
-                    }
-                });
-                response.body().close();
-            }
-        });
+        okHttpClient.newCall(request).enqueue(callback(callback));
     }
 
     /**
@@ -79,6 +52,7 @@ public class OkHttpUtil {
      */
     public static void httpPost(String url,Map<String,String> params,final IOkCallBack callback) {
         if (callback == null) throw new NullPointerException("callback is null");
+        if (callback.getClassType() == null) throw new NullPointerException("getClassType() cannot return null");
         if (params == null) throw new NullPointerException("params is null");
 
         FormBody.Builder formBodyBuilder = new FormBody.Builder();
@@ -89,12 +63,25 @@ public class OkHttpUtil {
         }
         FormBody formBody = formBodyBuilder.build();
 
-        Request request = new Request
+        final Request request = new Request
                 .Builder()
                 .post(formBody)
                 .url(url)
                 .build();
-        okHttpClient.newCall(request).enqueue(new Callback() {
+        okHttpClient.newCall(request).enqueue(callback(callback));
+    }
+
+    private static void post(final IOkCallBack callback, final Object object) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(object);
+            }
+        });
+    }
+
+    private static Callback callback(final IOkCallBack callback) {
+        Callback back = new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {
                 mHandler.post(new Runnable() {
@@ -103,20 +90,23 @@ public class OkHttpUtil {
                         callback.onException(e);
                     }
                 });
-
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+
                 final String result = response.body().string();
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onSuccess(result);
-                    }
-                });
+                if (callback.getClassType() == String.class) {
+                    post(callback,result);
+                } else {
+                    Object o = GsonUtil.fromJson(result, callback.getClassType());
+                    post(callback,o);
+                }
+
                 response.body().close();
             }
-        });
+        };
+
+        return back;
     }
 }
