@@ -21,7 +21,9 @@
         <activity android:name=".GetAsyncActivity" />
         <activity android:name=".PostSyncActivity" />
         <activity android:name=".PostAsyncActivity" />
-        <activity android:name=".HttpDemoActivity"></activity>
+        <activity android:name=".HttpDemoActivity" />
+        <activity android:name=".DownloadActivity" />
+        <activity android:name=".UploadActivity"></activity>
     </application>
 
 </manifest>

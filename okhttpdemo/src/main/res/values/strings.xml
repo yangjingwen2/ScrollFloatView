@@ -6,8 +6,8 @@
         <item>Post同步</item>
         <item>Post异步</item>
         <item>封装OkHttp请求Demo</item>
+        <item>下载(支持断点续传)</item>
         <item>上传</item>
-        <item>下载</item>
         <item>缓存</item>
         <item>拦截器</item>
     </string-array>

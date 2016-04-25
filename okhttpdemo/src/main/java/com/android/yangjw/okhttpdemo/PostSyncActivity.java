@@ -52,7 +52,7 @@ public class PostSyncActivity extends AppCompatActivity {
         //Form表单格式的参数传递
         FormBody formBody = new FormBody
                 .Builder()
-                .add("username","androidxx.cn")//设置参数名称和参数值
+                .add("username","androidxx")//设置参数名称和参数值
                 .build();
         Request request = new Request
                 .Builder()
@@ -62,7 +62,7 @@ public class PostSyncActivity extends AppCompatActivity {
         try {
             Response response = okHttpClient.newCall(request).execute();
             String result = response.body().string();
-            Log.d("androixx.cn",result);
+            Log.d("androixx",result);
             response.body().close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,11 +72,11 @@ public class PostSyncActivity extends AppCompatActivity {
     private void jsonPost() {
         OkHttpClient okHttpClient = new OkHttpClient();
         //设置媒体类型。application/json表示传递的是一个json格式的对象
-        MediaType mediaType = MediaType.parse("text/plain");
+        MediaType mediaType = MediaType.parse("application/json");
         //使用JSONObject封装参数
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("username","androidxx.ren");
+            jsonObject.put("username","androidxx");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -90,7 +90,7 @@ public class PostSyncActivity extends AppCompatActivity {
         try {
             Response response = okHttpClient.newCall(request).execute();
             String result = response.body().string();
-            Log.d("androixx.cn",result);
+            Log.d("androixx", result);
 
             response.body().close();
         } catch (IOException e) {

@@ -46,7 +46,8 @@ public class GetSyncActivity extends AppCompatActivity {
                     response = client.newCall(request).execute();
                     //获取Http Status Code.其中200表示成功
                     if (response.code() == 200) {
-                        //这里需要注意，response.body().string()是获取返回的结果，此句话只能调用一次，再次调用获得不到结果。
+                        //这里需要注意，response.body().string()是获取返回的结果，
+                        // 此句话只能调用一次，再次调用获得不到结果。
                         //所以先将结果使用result变量接收
                         String result = response.body().string();
                         Log.d("yangjw",result);

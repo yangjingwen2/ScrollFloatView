@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
                         intent.setClass(MainActivity.this,HttpDemoActivity.class);
                         break;
                     case 5:
+                        intent.setClass(MainActivity.this,DownloadActivity.class);
+                        break;
+                    case 6:
+                        intent.setClass(MainActivity.this,UploadActivity.class);
                         break;
                 }
                 startActivity(intent);

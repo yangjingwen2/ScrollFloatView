@@ -24,7 +24,8 @@ public class GetAsyncActivity extends AppCompatActivity {
     public void click(View view) {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder().get().url(Config.URL).build();
-        //enqueue就是将此次的call请求加入异步请求队列，会开启新的线程执行，并将执行的结果通过Callback接口回调的形式返回。
+        //enqueue就是将此次的call请求加入异步请求队列，会开启新的线程执行，
+        // 并将执行的结果通过Callback接口回调的形式返回。
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

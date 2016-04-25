@@ -27,7 +27,7 @@ public class PostAsyncActivity extends AppCompatActivity {
         //Form表单格式的参数传递
         FormBody formBody = new FormBody
                 .Builder()
-                .add("username","androidxx.cn")//设置参数名称和参数值
+                .add("username","androidxx")//设置参数名称和参数值
                 .build();
         Request request = new Request
                 .Builder()
@@ -42,7 +42,7 @@ public class PostAsyncActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 //此方法运行在子线程中，不能在此方法中进行UI操作。
                 String result = response.body().string();
-                Log.d("androixx.cn", result);
+                Log.d("androixx", result);
                 response.body().close();
             }
         });
