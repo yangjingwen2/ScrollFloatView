@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
                     case 6:
                         intent.setClass(MainActivity.this,UploadActivity.class);
                         break;
+                    case 7:
+                        intent.setClass(MainActivity.this,CacheActivity.class);
+                        break;
+                    case 8:
+                        intent.setClass(MainActivity.this,InterceptorActivity.class);
+                        break;
                 }
                 startActivity(intent);
             }

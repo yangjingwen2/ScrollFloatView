@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -35,14 +36,19 @@ import okhttp3.Response;
 public class UploadActivity extends AppCompatActivity {
 
     public static final int GET_PIC = 1;
+    //
+    public String URL = "http://192.168.3.4:8080/androidxx/upload.do";
     private ImageView mShowImage;
     private Uri uri;
     OkHttpClient okHttpClient = new OkHttpClient();
+    private EditText uploadUrlEdt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         mShowImage = (ImageView) findViewById(R.id.upload_show_image);
+        uploadUrlEdt  = (EditText) findViewById(R.id.upload_url_edt);
     }
 
     public void click(View view) {
@@ -51,6 +57,11 @@ public class UploadActivity extends AppCompatActivity {
                 choosePic();//选择图片
                 break;
             case R.id.upload_start:
+                URL = uploadUrlEdt.getText().toString().trim();
+                if ("".equals(URL)) {
+                    Toast.makeText(UploadActivity.this,"请填写上传服务URL地址",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 upload();//上传
                 break;
         }

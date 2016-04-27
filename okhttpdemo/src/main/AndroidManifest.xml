@@ -23,7 +23,9 @@
         <activity android:name=".PostAsyncActivity" />
         <activity android:name=".HttpDemoActivity" />
         <activity android:name=".DownloadActivity" />
-        <activity android:name=".UploadActivity"></activity>
+        <activity android:name=".UploadActivity" />
+        <activity android:name=".CacheActivity" />
+        <activity android:name=".InterceptorActivity"></activity>
     </application>
 
 </manifest>
