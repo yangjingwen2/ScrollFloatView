@@ -108,7 +108,7 @@ public class UploadActivity extends AppCompatActivity {
         //创建MultipartBody对象，MultipartBody是RequestBody的子类，用于文件上传。
         MultipartBody multipartBody = builder.build();
         Request request = new Request.Builder()
-                .url("http://192.168.3.4:8080/WebServer/upload.do")
+                .url(URL)
                 .post(multipartBody)
                 .build();
         //开始上传。采用Post异步请求的方式
